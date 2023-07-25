@@ -1,0 +1,7 @@
+README.md
+.drone.yml
+*.json
+catalog-info.yaml
+src/app.service.ts
+mkdocs.yml
+docs/index.md

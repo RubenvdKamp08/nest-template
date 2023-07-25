@@ -1,0 +1,7 @@
+site_name: ${REPO_NAME}
+
+nav:
+  - Home: index.md
+
+plugins:
+  - techdocs-core

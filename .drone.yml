@@ -1,0 +1,25 @@
+---
+kind: pipeline
+type: kubernetes
+name: build
+steps:
+  - name: yaml_validator
+    image: devatherock/drone-yaml-validator:latest
+    settings:
+      debug: true
+      continue_on_error: false
+      allow_duplicate_keys: false
+      ignore_unknown_tags: true
+  - name: build-push
+    image: plugins/docker
+    settings:
+      registry: harbor.134.209.138.125.nip.io
+      repo: harbor.134.209.138.125.nip.io/team-admin/${REPO_NAME}
+      insecure: true
+      username:
+        from_secret: REGISTRY_USERNAME
+      password:
+        from_secret: REGISTRY_PASSWORD
+      tags:
+        - ${${DRONE_BUILD_NUMBER}}
+        - latest
